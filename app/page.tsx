@@ -39,9 +39,9 @@ function SectionTitle({eyebrow,title,text,light=false}:{eyebrow:string;title:str
     </div>
   );
 }
-function Btn({children,ghost=false,href=whatsapp}:{children:React.ReactNode;ghost?:boolean;href?:string}){
+function Btn({children,ghost=false,href=whatsapp,internal=false}:{children:React.ReactNode;ghost?:boolean;href?:string;internal?:boolean}){
   return(
-    <a href={href} target="_blank"
+    <a href={href} {...(!internal&&{target:"_blank",rel:"noopener noreferrer"})}
       className={"inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold transition hover:-translate-y-0.5 "+(ghost?"border border-white/30 text-white hover:bg-white/10":"bg-wine text-white shadow-md shadow-wine/20")}>
       {children}<ArrowRight size={15}/>
     </a>
@@ -65,9 +65,9 @@ export default function Home(){
 
   {/* ═══════════════════════════ NAV ═══════════════════════════ */}
   <nav className="fixed inset-x-0 top-0 z-40 border-b border-wine/10 bg-cream/95 backdrop-blur-md">
-    <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+    <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6">
       <a href="#home">
-        <img src="/images/jeevanyam-logo.jpg" alt="ஜீவனயம்" className="h-11 w-auto object-contain" style={{mixBlendMode:"multiply"}}/>
+        <img src="/images/jeevanyam-logo-dark.png" alt="ஜீவனயம்" className="h-20 w-auto object-contain"/>
       </a>
       <div className="hidden items-center gap-7 text-sm font-medium text-ink/70 md:flex">
         {[["#services",t("சேவைகள்","Services")],["#portfolio",t("புத்தகங்கள்","Books")],["#pricing",t("விலை","Pricing")],["#about",t("எங்களைப் பற்றி","About")],["#contact",t("தொடர்பு","Contact")]].map(([href,label])=>
@@ -79,7 +79,7 @@ export default function Home(){
   </nav>
 
   {/* ═══════════════════════════ HERO — dark ═══════════════════════════ */}
-  <section id="home" className="relative bg-[#1e0810] pt-16 text-white overflow-hidden">
+  <section id="home" className="relative bg-[#1e0810] pt-24 text-white overflow-hidden">
     <div className="pointer-events-none absolute left-0 top-0 h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(200,155,75,.12),transparent_70%)]"/>
     <div className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(100,31,43,.45),transparent_70%)]"/>
     <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 py-16 md:grid-cols-2 md:gap-12 md:py-20">
@@ -99,7 +99,7 @@ export default function Home(){
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Btn>{t("கதையைத் தொடங்குங்கள்","Begin Your Story")}</Btn>
-          <Btn ghost href="#how">{t("எப்படி செய்கிறோம்","How it works")}</Btn>
+          <Btn ghost href="#how" internal>{t("எப்படி செய்கிறோம்","How it works")}</Btn>
         </div>
         <div className="mt-8 flex gap-7 border-t border-white/10 pt-7 text-sm">
           {[["500+",t("கதைகள்","Stories")],["4.9/5",t("மதிப்பீடு","Rating")],["3+",t("ஆண்டுகள்","Years")]].map(([n,l])=>
@@ -297,7 +297,7 @@ export default function Home(){
   {/* ═══════════════════════════ FOOTER ═══════════════════════════ */}
   <footer className="border-t border-wine/10 bg-[#f0e6d3] px-6 py-6">
     <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-xs text-stone-500 md:flex-row">
-      <img src="/images/jeevanyam-logo.jpg" alt="ஜீவனயம்" className="h-9 w-auto object-contain" style={{mixBlendMode:"multiply"}}/>
+      <img src="/images/jeevanyam-logo-dark.png" alt="ஜீவனயம்" className="h-10 w-auto object-contain"/>
       <p>© 2026 Jeevanyam. {t("நினைவுகளை பாதுகாப்போம்.","Made for stories that matter.")}</p>
     </div>
   </footer>
