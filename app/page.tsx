@@ -102,7 +102,7 @@ export default function Home(){
 
       {/* logo */}
       <a href="#home" onClick={(e)=>{e.preventDefault();navigateTo("#home");}} className="shrink-0">
-        <img src="/images/jeevanyam-logo-dark.png" alt="ஜீவனயம்" className="h-16 w-auto object-contain sm:h-20"/>
+        <img src="/images/jeevanyam-logo-dark.png" alt="ஜீவனயம்" className="h-16 w-auto object-contain sm:h-20" fetchPriority="high"/>
       </a>
 
       {/* desktop links */}
@@ -199,11 +199,11 @@ export default function Home(){
       {/* photo mosaic — desktop only */}
       <motion.div initial={{opacity:0,scale:.97}} animate={{opacity:1,scale:1}} transition={{duration:.85,delay:.2}} className="relative hidden md:block">
         <div className="grid grid-cols-12 grid-rows-[160px_150px_150px] gap-2">
-          <div className="col-span-5 row-span-2 overflow-hidden rounded-xl"><img src="/images/hero-memory-1.jpg" alt="" className="h-full w-full object-cover transition duration-700 hover:scale-105"/></div>
-          <div className="col-span-4 row-span-1 overflow-hidden rounded-xl"><img src="/images/hero-memory-2.jpg" alt="" className="h-full w-full object-cover object-top transition duration-700 hover:scale-105"/></div>
-          <div className="col-span-3 row-span-2 overflow-hidden rounded-xl"><img src="/images/hero-memory-4.jpg" alt="" className="h-full w-full object-cover transition duration-700 hover:scale-105"/></div>
-          <div className="col-span-4 row-span-1 overflow-hidden rounded-xl"><img src="/images/hero-memory-3.jpg" alt="" className="h-full w-full object-cover transition duration-700 hover:scale-105"/></div>
-          <div className="col-span-12 row-span-1 overflow-hidden rounded-xl"><img src="/images/hero-memory-5.jpg" alt="" className="h-full w-full object-cover object-center transition duration-700 hover:scale-105"/></div>
+          <div className="col-span-5 row-span-2 overflow-hidden rounded-xl"><img src="/images/hero-memory-1.jpg" alt="குடும்ப நினைவு" fetchPriority="high" loading="eager" className="h-full w-full object-cover transition duration-700 hover:scale-105"/></div>
+          <div className="col-span-4 row-span-1 overflow-hidden rounded-xl"><img src="/images/hero-memory-2.jpg" alt="விளக்கு" loading="lazy" className="h-full w-full object-cover object-top transition duration-700 hover:scale-105"/></div>
+          <div className="col-span-3 row-span-2 overflow-hidden rounded-xl"><img src="/images/hero-memory-4.jpg" alt="வாசல்" loading="lazy" className="h-full w-full object-cover transition duration-700 hover:scale-105"/></div>
+          <div className="col-span-4 row-span-1 overflow-hidden rounded-xl"><img src="/images/hero-memory-3.jpg" alt="பொங்கல்" loading="lazy" className="h-full w-full object-cover transition duration-700 hover:scale-105"/></div>
+          <div className="col-span-12 row-span-1 overflow-hidden rounded-xl"><img src="/images/hero-memory-5.jpg" alt="இல்லம்" loading="lazy" className="h-full w-full object-cover object-center transition duration-700 hover:scale-105"/></div>
         </div>
         <div className="absolute -bottom-3 -left-3 flex items-center gap-2 rounded-xl border border-gold/20 bg-[#1e0810]/90 px-3 py-2.5 backdrop-blur-sm shadow-lg">
           <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gold/20"><Heart size={11} className="text-gold" fill="currentColor"/></div>
@@ -215,7 +215,7 @@ export default function Home(){
       <div className="flex gap-2 overflow-x-auto pb-1 md:hidden" style={{scrollSnapType:"x mandatory"}}>
         {["hero-memory-1","hero-memory-2","hero-memory-4","hero-memory-3"].map(img=>(
           <div key={img} className="h-44 w-36 shrink-0 overflow-hidden rounded-xl" style={{scrollSnapAlign:"start"}}>
-            <img src={`/images/${img}.jpg`} alt="" className="h-full w-full object-cover"/>
+            <img src={`/images/${img}.jpg`} alt="" loading="lazy" className="h-full w-full object-cover"/>
           </div>
         ))}
       </div>
@@ -274,7 +274,7 @@ export default function Home(){
         <motion.div initial={{opacity:0,y:16}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:.5}}
           className="group flex overflow-hidden rounded-2xl bg-[#2c1019] ring-1 ring-gold/20 shadow-xl">
           <div className="relative w-32 shrink-0 overflow-hidden sm:w-36">
-            <img src="/images/kavalajoathi-book.jpg" alt="கவைஜோதி இல்லம்" className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/>
+            <img src="/images/kavalajoathi-book.jpg" alt="கவைஜோதி இல்லம்" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-4 bg-gradient-to-l from-[#2c1019] to-transparent"/>
           </div>
           <div className="flex flex-1 flex-col justify-between p-4 sm:p-5">
@@ -394,7 +394,7 @@ export default function Home(){
   {/* ══════════════ FOOTER ══════════════ */}
   <footer className="border-t border-wine/10 bg-[#f0e6d3] px-4 py-5 sm:px-6">
     <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-xs text-stone-500 sm:flex-row">
-      <img src="/images/jeevanyam-logo-dark.png" alt="ஜீவனயம்" className="h-9 w-auto object-contain"/>
+      <img src="/images/jeevanyam-logo-dark.png" alt="ஜீவனயம்" loading="lazy" className="h-9 w-auto object-contain"/>
       <p>© 2026 Jeevanyam. {t("நினைவுகளை பாதுகாப்போம்.","Made for stories that matter.")}</p>
     </div>
   </footer>
