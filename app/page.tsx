@@ -376,14 +376,14 @@ export default function Home(){
   <section id="contact" className="bg-cream py-14 sm:py-16">
     <div className="mx-auto grid max-w-5xl gap-8 px-4 sm:px-6 md:grid-cols-2 md:items-start md:gap-12">
       <SectionTitle eyebrow="BEGIN YOUR BOOK" title={t("உங்கள் கதையை எங்களுக்குச் சொல்லுங்கள்","Tell us about your story")}/>
-      <form onSubmit={submit} className="grid gap-3">
-        <input required name="name" placeholder={t("உங்கள் பெயர்","Your name")} className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"/>
-        <input required name="phone" placeholder={t("தொலைபேசி எண்","Phone number")} type="tel" inputMode="numeric" className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"/>
-        <select name="story" className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm text-stone-500 outline-none focus:border-gold">
+      <form onSubmit={submit} className="grid gap-3" autoComplete="on">
+        <input required name="name" autoComplete="name" placeholder={t("உங்கள் பெயர்","Your name")} className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"/>
+        <input required name="phone" autoComplete="tel" type="tel" inputMode="numeric" placeholder={t("தொலைபேசி எண்","Phone number")} className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"/>
+        <select name="story" autoComplete="off" className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm text-stone-500 outline-none focus:border-gold">
           <option>{t("கதை வகையைத் தேர்ந்தெடுங்கள்","Select story type")}</option>
           {services.map(x=><option key={x[0]}>{x[0]}</option>)}
         </select>
-        <textarea name="message" placeholder={t("உங்கள் கதையைப் பற்றி சில வார்த்தைகள்...","A few words about your story...")} rows={3} className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 resize-none"/>
+        <textarea name="message" autoComplete="off" placeholder={t("உங்கள் கதையைப் பற்றி சில வார்த்தைகள்...","A few words about your story...")} rows={3} className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 resize-none"/>
         <button type="submit" className="flex items-center justify-center gap-2 rounded-lg bg-wine px-5 py-3 text-sm font-bold text-white transition hover:bg-wine/90 active:scale-[.98]">
           {t("WhatsApp-ல் அனுப்புங்கள்","Send on WhatsApp")}<MessageCircle size={16}/>
         </button>
