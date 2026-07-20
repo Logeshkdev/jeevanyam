@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, BookOpen, Check, Heart, Menu, MessageCircle, PenLine, Quote, Sparkles, Star, X } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 
-const whatsapp = "https://wa.me/94770000000?text=" + encodeURIComponent("வணக்கம்! என் கதையை ஒரு புத்தகமாக மாற்ற விரும்புகிறேன்.");
+const whatsapp = "https://wa.me/916383393155?text=" + encodeURIComponent("வணக்கம்! என் கதையை ஒரு புத்தகமாக மாற்ற விரும்புகிறேன்.");
 const services = [
   ["காதல் கதை","Love Story","காதலின் முதல் சந்திப்பிலிருந்து வாழ்நாள் பயணம் வரை.","❤️"],
   ["குடும்ப நினைவுகள்","Family Story","உங்கள் குடும்பத்தின் அழகிய பாரம்பரியத்தைப் பாதுகாப்போம்.","👨‍👩‍👧"],
@@ -62,6 +62,22 @@ export default function Home(){
   const links = navLinks(t);
   const closeMenu = ()=>setMenuOpen(false);
 
+  // programmatic smooth-scroll that accounts for the fixed nav height
+  const navigateTo = (href: string) => {
+    setMenuOpen(false);
+    if(!href.startsWith("#")) return;
+    const id = href.slice(1);
+    // small delay so drawer close animation doesn't fight the scroll
+    setTimeout(()=>{
+      const el = document.getElementById(id);
+      if(el){
+        const navH = document.querySelector("nav")?.offsetHeight ?? 80;
+        const top = el.getBoundingClientRect().top + window.scrollY - navH;
+        window.scrollTo({top, behavior:"smooth"});
+      }
+    }, 50);
+  };
+
   useEffect(()=>{document.title=en?"Jeevanyam | Personalized Story Books":"ஜீவனயம் | தனிப்பயன் கதை புத்தகங்கள்";},[en]);
   useEffect(()=>{const id=window.setInterval(()=>setActiveTesti(c=>(c+1)%testimonials.length),5000);return()=>window.clearInterval(id);},[]);
   // close menu on resize to desktop
@@ -74,7 +90,7 @@ export default function Home(){
   const submit=(e:FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
     const f=new FormData(e.currentTarget);
-    window.open(`https://wa.me/94770000000?text=Hello!%0AName: ${f.get("name")}%0APhone: ${f.get("phone")}%0AStory: ${f.get("story")}%0AMessage: ${f.get("message")}`,"_blank");
+    window.open(`https://wa.me/916383393155?text=Hello!%0AName: ${f.get("name")}%0APhone: ${f.get("phone")}%0AStory: ${f.get("story")}%0AMessage: ${f.get("message")}`,"_blank");
   };
 
   return(
@@ -85,14 +101,15 @@ export default function Home(){
     <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
 
       {/* logo */}
-      <a href="#home" onClick={closeMenu} className="shrink-0">
+      <a href="#home" onClick={(e)=>{e.preventDefault();navigateTo("#home");}} className="shrink-0">
         <img src="/images/jeevanyam-logo-dark.png" alt="ஜீவனயம்" className="h-16 w-auto object-contain sm:h-20"/>
       </a>
 
       {/* desktop links */}
       <div className="hidden items-center gap-6 text-sm font-medium text-ink/70 md:flex">
         {links.map(([href,label])=>
-          <a key={href} href={href} className="transition hover:text-wine">{label}</a>
+          <button key={href} onClick={()=>navigateTo(href)}
+            className="transition hover:text-wine">{label}</button>
         )}
       </div>
 
@@ -129,11 +146,12 @@ export default function Home(){
             {links.map(([href,label],i)=>(
               <motion.li key={href}
                 initial={{opacity:0,y:-8}} animate={{opacity:1,y:0}} transition={{delay:i*0.04,duration:.18}}>
-                <a href={href} onClick={closeMenu}
-                  className="flex items-center justify-between rounded-xl px-4 py-3.5 text-sm font-semibold text-ink/80 transition hover:bg-wine/6 hover:text-wine active:scale-[.98]">
+                <button
+                  onClick={()=>navigateTo(href)}
+                  className="flex w-full items-center justify-between rounded-xl px-4 py-4 text-left text-base font-semibold text-ink/80 transition hover:bg-wine/6 hover:text-wine active:bg-wine/10 active:scale-[.98]">
                   {label}
-                  <ArrowRight size={14} className="text-wine/25"/>
-                </a>
+                  <ArrowRight size={15} className="text-wine/30"/>
+                </button>
               </motion.li>
             ))}
           </ul>
@@ -166,7 +184,10 @@ export default function Home(){
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Btn>{t("கதையைத் தொடங்குங்கள்","Begin Your Story")}</Btn>
-          <Btn ghost href="#how" internal>{t("எப்படி செய்கிறோம்","How it works")}</Btn>
+          <button onClick={()=>navigateTo("#how")}
+            className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-white/10 active:scale-95">
+            {t("எப்படி செய்கிறோம்","How it works")}<ArrowRight size={15}/>
+          </button>
         </div>
         <div className="mt-7 flex gap-6 border-t border-white/10 pt-6">
           {[["500+",t("கதைகள்","Stories")],["4.9/5",t("மதிப்பீடு","Rating")],["3+",t("ஆண்டுகள்","Years")]].map(([n,l])=>
