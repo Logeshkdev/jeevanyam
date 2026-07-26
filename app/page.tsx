@@ -9,8 +9,8 @@ const services = [
   ["குடும்ப நினைவுகள்","Family Story","உங்கள் குடும்பத்தின் அழகிய பாரம்பரியத்தைப் பாதுகாப்போம்.","👨‍👩‍👧"],
   ["வீட்டின் பயணம்","House Journey","கனவிலிருந்து இல்லம் வரை ஒவ்வொரு அத்தியாயமும்.","🏠"],
   ["பெற்றோர் வரலாறு","Parents Memoir","அன்பும் தியாகமும் நிறைந்த அவர்களின் வாழ்க்கை.","👵"],
-  ["திருமண நினைவுகள்","Wedding Story","உங்கள் சிறப்பான நாளை என்றும் வாழும் கதையாக்குவோம்.","💍"],
-  ["தொழில் பயணம்","Business Journey","ஒரு கனவின் தொடக்கமும் அதன் வெற்றியும்.","💼"],
+  ["திருமண நினைவுகள்","Wedding Story","உங்கள் சிறப்பான நாளை என்றும் வாழும் கதையாக மாற்றுவோம்.","💍"],
+  ["தொழில் பயணம்","Business Journey","ஒரு கனவின் தொடக்கமும் அதன் வெற்றிப் பயணமும்.","💼"],
 ];
 const serviceDescriptions = [
   "From your first meeting to a lifetime journey of love.",
@@ -21,8 +21,8 @@ const serviceDescriptions = [
   "The beginning of a dream and the path to success.",
 ];
 const testimonials = [
-  ["என் அப்பாவின் வாழ்க்கை கதையை புத்தகமாக கொடுத்தபோது அவர் கண்களில் கண்ணீர் வந்தது.","When we gave my father his life story as a book, there were tears in his eyes."],
-  ["எங்கள் காதல் பயணத்தை புத்தகமாக மாற்றிய விதம் மிகவும் அழகாக இருந்தது.","The way they turned our journey of love into a book was truly beautiful."],
+  ["என் அப்பாவின் வாழ்க்கைக் கதையை புத்தகமாகக் கொடுத்தபோது அவர் கண்களில் கண்ணீர் வந்தது.","When we gave my father his life story as a book, there were tears in his eyes."],
+  ["எங்கள் காதல் பயணத்தை புத்தகமாக மாற்றிய விதம் மிகவும் அழகாக இருந்தது — நன்றி ஜீவனயம்.","The way they turned our journey of love into a book was truly beautiful — thank you Jeevanyam."],
   ["வீடு கட்டிய பயணத்தை புத்தகமாக வைத்திருப்பது எங்கள் குடும்பத்திற்கு ஒரு பொக்கிஷம்.","Keeping our home-building journey as a book is a treasure for our family."],
 ];
 const navLinks = (t:(a:string,b:string)=>string):[string,string][] => [
@@ -34,14 +34,16 @@ const navLinks = (t:(a:string,b:string)=>string):[string,string][] => [
 ];
 
 function Tag({children}:{children:React.ReactNode}){
-  return <p className="mb-2 text-[11px] font-bold uppercase tracking-[.22em] text-gold">{children}</p>;
+  return <p className="mb-2 text-[11px] font-bold uppercase tracking-[.22em] text-gold" style={{fontFamily:'var(--font-sans-tamil)'}}>{children}</p>;
 }
 function SectionTitle({eyebrow,title,text,light=false}:{eyebrow:string;title:string;text?:string;light?:boolean}){
   return(
     <div className="max-w-xl">
       <Tag>{eyebrow}</Tag>
-      <h2 className={`font-serif text-2xl leading-tight sm:text-3xl md:text-4xl ${light?"text-white":"text-wine"}`}>{title}</h2>
-      {text&&<p className={`mt-3 text-sm leading-7 ${light?"text-white/60":"text-stone-500"}`}>{text}</p>}
+      <h2 className={`font-serif text-2xl leading-snug sm:text-3xl md:text-4xl ${light?"text-white":"text-wine"}`}
+        style={{fontFamily:'var(--font-serif-tamil)',lineHeight:1.35}}>{title}</h2>
+      {text&&<p className={`mt-3 text-sm sm:text-base leading-[1.9] ${light?"text-white/60":"text-stone-500"}`}
+        style={{fontFamily:'var(--font-sans-tamil)'}}>{text}</p>}
     </div>
   );
 }
@@ -97,8 +99,8 @@ export default function Home(){
   <main>
 
   {/* ══════════════ NAV ══════════════ */}
-  <nav className="fixed inset-x-0 top-0 z-50 border-b border-wine/10 bg-cream/95 backdrop-blur-md">
-    <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
+  <nav className="fixed inset-x-0 top-0 z-50 border-b border-wine/10 bg-cream/95 backdrop-blur-md" style={{fontFamily:'var(--font-sans-tamil)'}}>
+    <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 sm:h-20">
 
       {/* logo */}
       <a href="#home" onClick={(e)=>{e.preventDefault();navigateTo("#home");}} className="shrink-0">
@@ -148,7 +150,8 @@ export default function Home(){
                 initial={{opacity:0,y:-8}} animate={{opacity:1,y:0}} transition={{delay:i*0.04,duration:.18}}>
                 <button
                   onClick={()=>navigateTo(href)}
-                  className="flex w-full items-center justify-between rounded-xl px-4 py-4 text-left text-base font-semibold text-ink/80 transition hover:bg-wine/6 hover:text-wine active:bg-wine/10 active:scale-[.98]">
+                  style={{fontFamily:'var(--font-sans-tamil)'}}
+                  className="flex w-full items-center justify-between rounded-xl px-4 py-4 text-left text-[15px] font-semibold text-ink/80 transition hover:bg-wine/6 hover:text-wine active:bg-wine/10 active:scale-[.98]">
                   {label}
                   <ArrowRight size={15} className="text-wine/30"/>
                 </button>
@@ -168,17 +171,19 @@ export default function Home(){
 
       {/* copy */}
       <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:.7}} className="flex flex-col">
-        <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-widest text-gold">
+        <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-widest text-gold"
+          style={{fontFamily:'var(--font-sans-tamil)'}}>
           <Sparkles size={10}/>{t("உங்கள் நினைவுகள், எங்கள் கலை","YOUR MEMORIES, OUR CRAFT")}
         </div>
-        <h1 className="font-serif text-3xl leading-[1.12] sm:text-4xl md:text-5xl lg:text-6xl">
+        <h1 className="font-serif text-[2rem] leading-[1.25] sm:text-4xl md:text-5xl lg:text-6xl"
+          style={{fontFamily: en ? 'var(--font-serif-latin)' : 'var(--font-serif-tamil)', lineHeight: en ? '1.12' : '1.4'}}>
           {en?<>Turn Your Life<br/><span className="text-gold">Into A Beautiful</span><br/>Book</>
              :<>உங்கள் வாழ்க்கை<br/><span className="text-gold">ஒரு அழகான</span><br/>புத்தகமாக</>}
         </h1>
         <div className="my-4 flex items-center gap-3">
           <span className="h-px w-8 bg-gold/50"/><Heart size={12} className="text-gold/70" fill="currentColor"/><span className="h-px flex-1 bg-white/10"/>
         </div>
-        <p className="max-w-sm text-sm leading-7 text-white/60">
+        <p className="max-w-sm text-sm sm:text-[15px] text-white/60" style={{fontFamily:'var(--font-sans-tamil)',lineHeight:1.9}}>
           {en?"Preserve the moments that made you — thoughtfully written, beautifully designed, forever yours."
              :"நினைவுகளை தலைமுறைகள் கடந்து பாதுகாப்போம். உங்கள் கதை, உங்கள் குரலில், என்றும் வாழும் ஒரு புத்தகமாக."}
         </p>
@@ -198,12 +203,31 @@ export default function Home(){
 
       {/* photo mosaic — desktop only */}
       <motion.div initial={{opacity:0,scale:.97}} animate={{opacity:1,scale:1}} transition={{duration:.85,delay:.2}} className="relative hidden md:block">
-        <div className="grid grid-cols-12 grid-rows-[160px_150px_150px] gap-2">
-          <div className="col-span-5 row-span-2 overflow-hidden rounded-xl"><img src="/images/hero-memory-1.jpg" alt="குடும்ப நினைவு" fetchPriority="high" loading="eager" className="h-full w-full object-cover transition duration-700 hover:scale-105"/></div>
-          <div className="col-span-4 row-span-1 overflow-hidden rounded-xl"><img src="/images/hero-memory-2.jpg" alt="விளக்கு" loading="lazy" className="h-full w-full object-cover object-top transition duration-700 hover:scale-105"/></div>
-          <div className="col-span-3 row-span-2 overflow-hidden rounded-xl"><img src="/images/hero-memory-4.jpg" alt="வாசல்" loading="lazy" className="h-full w-full object-cover transition duration-700 hover:scale-105"/></div>
-          <div className="col-span-4 row-span-1 overflow-hidden rounded-xl"><img src="/images/hero-memory-3.jpg" alt="பொங்கல்" loading="lazy" className="h-full w-full object-cover transition duration-700 hover:scale-105"/></div>
-          <div className="col-span-12 row-span-1 overflow-hidden rounded-xl"><img src="/images/hero-memory-5.jpg" alt="இல்லம்" loading="lazy" className="h-full w-full object-cover object-center transition duration-700 hover:scale-105"/></div>
+        <div className="grid grid-cols-12 grid-rows-[150px_140px_140px_140px] gap-2">
+          {/* row 1+2 — tall left: silhouette */}
+          <div className="col-span-5 row-span-2 overflow-hidden rounded-xl">
+            <img src="/images/hero-memory-1.jpg" alt="குடும்ப நினைவு" fetchPriority="high" loading="eager" className="h-full w-full object-cover transition duration-700 hover:scale-105"/>
+          </div>
+          {/* row 1 — lamp */}
+          <div className="col-span-4 row-span-1 overflow-hidden rounded-xl">
+            <img src="/images/hero-memory-2.jpg" alt="விளக்கு" loading="lazy" className="h-full w-full object-cover object-top transition duration-700 hover:scale-105"/>
+          </div>
+          {/* row 1+2 — woman at door */}
+          <div className="col-span-3 row-span-2 overflow-hidden rounded-xl">
+            <img src="/images/hero-memory-4.jpg" alt="வாசல்" loading="lazy" className="h-full w-full object-cover transition duration-700 hover:scale-105"/>
+          </div>
+          {/* row 2 — pongal fire */}
+          <div className="col-span-4 row-span-1 overflow-hidden rounded-xl">
+            <img src="/images/hero-memory-3.jpg" alt="பொங்கல்" loading="lazy" className="h-full w-full object-cover transition duration-700 hover:scale-105"/>
+          </div>
+          {/* row 3 — kitchen full width */}
+          <div className="col-span-12 row-span-1 overflow-hidden rounded-xl">
+            <img src="/images/hero-memory-5.jpg" alt="இல்லம்" loading="lazy" className="h-full w-full object-cover object-center transition duration-700 hover:scale-105"/>
+          </div>
+          {/* row 4 — கலைஜோதி இல்லம் plaque — new image */}
+          <div className="col-span-12 row-span-1 overflow-hidden rounded-xl">
+            <img src="/images/hero-memory-6.jpg" alt="கலைஜோதி இல்லம்" loading="lazy" className="h-full w-full object-cover object-center transition duration-700 hover:scale-105"/>
+          </div>
         </div>
         <div className="absolute -bottom-3 -left-3 flex items-center gap-2 rounded-xl border border-gold/20 bg-[#1e0810]/90 px-3 py-2.5 backdrop-blur-sm shadow-lg">
           <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gold/20"><Heart size={11} className="text-gold" fill="currentColor"/></div>
@@ -213,7 +237,7 @@ export default function Home(){
 
       {/* mobile-only image strip */}
       <div className="flex gap-2 overflow-x-auto pb-1 md:hidden" style={{scrollSnapType:"x mandatory"}}>
-        {["hero-memory-1","hero-memory-2","hero-memory-4","hero-memory-3"].map(img=>(
+        {["hero-memory-1","hero-memory-2","hero-memory-4","hero-memory-3","hero-memory-6"].map(img=>(
           <div key={img} className="h-44 w-36 shrink-0 overflow-hidden rounded-xl" style={{scrollSnapAlign:"start"}}>
             <img src={`/images/${img}.jpg`} alt="" loading="lazy" className="h-full w-full object-cover"/>
           </div>
@@ -229,11 +253,11 @@ export default function Home(){
       <SectionTitle eyebrow="OUR PROCESS" title={t("நான்கு எளிய படிகள்","Four simple steps")}/>
       <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
         {([["01",t("பகிருங்கள்","Share"),MessageCircle],["02",t("எழுதுகிறோம்","We Write"),PenLine],["03",t("வடிவமைக்கிறோம்","We Design"),Sparkles],["04",t("உங்களிடம்","Delivered"),BookOpen]] as [string,string,any][]).map(([num,name,Icon])=>
-          <motion.div whileHover={{y:-4}} key={num} className="rounded-xl border border-wine/8 bg-white p-5 shadow-sm">
+          <motion.div whileHover={{y:-4}} key={num} className="rounded-xl border border-wine/8 bg-white p-4 sm:p-5 shadow-sm">
             <span className="text-xs font-bold text-gold">{num}</span>
             <Icon className="my-3 text-wine" size={20}/>
-            <h3 className="font-serif text-base text-wine sm:text-lg">{name}</h3>
-            <p className="mt-1 text-xs leading-5 text-stone-500">{t("அன்புடன், உங்கள் வசதிக்கு ஏற்றபடி.","At your pace, with gentle guidance.")}</p>
+            <h3 className="font-serif text-sm text-wine sm:text-base md:text-lg" style={{fontFamily:'var(--font-serif-tamil)',lineHeight:1.4}}>{name}</h3>
+            <p className="mt-1 text-xs leading-6 text-stone-500" style={{fontFamily:'var(--font-sans-tamil)'}}>{t("அன்புடன், உங்கள் வசதிக்கு ஏற்றபடி.","At your pace, with gentle guidance.")}</p>
           </motion.div>
         )}
       </div>
@@ -248,9 +272,9 @@ export default function Home(){
         {services.map(([ta,enN,desc,emoji],i)=>
           <motion.article whileHover={{y:-3}} key={ta} className="group relative overflow-hidden rounded-xl bg-white p-5 shadow-sm">
             <div className="absolute right-3 top-3 text-3xl opacity-15 transition group-hover:scale-125 group-hover:opacity-25">{emoji}</div>
-            <h3 className="relative font-serif text-lg text-wine">{en?enN:ta}</h3>
-            <p className="relative mt-2 text-xs leading-6 text-stone-500">{en?serviceDescriptions[i]:desc}</p>
-            <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="relative mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-wine">
+            <h3 className="relative font-serif text-base sm:text-lg text-wine" style={{fontFamily:'var(--font-serif-tamil)',lineHeight:1.4}}>{en?enN:ta}</h3>
+            <p className="relative mt-2 text-xs sm:text-[13px] leading-6 sm:leading-7 text-stone-500" style={{fontFamily:'var(--font-sans-tamil)'}}>{en?serviceDescriptions[i]:desc}</p>
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="relative mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-wine" style={{fontFamily:'var(--font-sans-tamil)'}}>
               {t("விசாரிக்கவும்","Enquire")}<ArrowRight size={12}/>
             </a>
           </motion.article>
@@ -274,20 +298,20 @@ export default function Home(){
         <motion.div initial={{opacity:0,y:16}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:.5}}
           className="group flex overflow-hidden rounded-2xl bg-[#2c1019] ring-1 ring-gold/20 shadow-xl">
           <div className="relative w-32 shrink-0 overflow-hidden sm:w-36">
-            <img src="/images/kalai-joathi-book.jpg" alt="கவைஜோதி இல்லம்" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/>
+            <img src="/images/kalai-joathi-book.jpg" alt="கலைஜோதி இல்லம்" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-4 bg-gradient-to-l from-[#2c1019] to-transparent"/>
           </div>
           <div className="flex flex-1 flex-col justify-between p-4 sm:p-5">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-gold">{t("வீட்டின் பயணம்","House Journey")}</span>
-              <h3 className="mt-1 font-serif text-sm text-white sm:text-base">{t("கவைஜோதி இல்லம்","Kavalajoathi Illam")}</h3>
-              <p className="mt-1 text-[11px] text-white/40">{t("எழுத்து — ராம்","Written by Ram")}</p>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-gold" style={{fontFamily:'var(--font-sans-tamil)'}}>{t("வீட்டின் பயணம்","House Journey")}</span>
+              <h3 className="mt-1 font-serif text-sm text-white sm:text-base" style={{fontFamily:'var(--font-serif-tamil)',lineHeight:1.4}}>{t("கலைஜோதி இல்லம்","Kalaijoathi Illam")}</h3>
+              <p className="mt-1 text-[11px] text-white/40" style={{fontFamily:'var(--font-sans-tamil)'}}>{t("எழுத்து — ராம்","Written by Ram")}</p>
               <div className="my-2 h-px w-5 bg-gold/30"/>
-              <p className="text-[11px] leading-5 text-white/50">{t("ஒரு குடும்பக் கனவும் உழைப்பும் புத்தகமானது.","A family's dream, now a book.")}</p>
+              <p className="text-[11px] leading-6 text-white/50" style={{fontFamily:'var(--font-sans-tamil)'}}>{t("ஒரு குடும்பக் கனவும் உழைப்பும் புத்தகமானது.","A family's dream, now a book.")}</p>
             </div>
             <div className="mt-3 flex items-center gap-0.5">
               {[...Array(5)].map((_,i)=><Star key={i} size={10} className="text-gold" fill="currentColor"/>)}
-              <span className="ml-2 text-[9px] text-white/30">{t("வெளியிடப்பட்டது","Published")}</span>
+              <span className="ml-2 text-[9px] text-white/30" style={{fontFamily:'var(--font-sans-tamil)'}}>{t("வெளியிடப்பட்டது","Published")}</span>
             </div>
           </div>
         </motion.div>
@@ -295,9 +319,9 @@ export default function Home(){
           className="flex min-h-[160px] items-center justify-center rounded-2xl border border-dashed border-white/15 bg-white/5">
           <div className="flex flex-col items-center gap-3 p-6 text-center">
             <div className="grid h-10 w-10 place-items-center rounded-full border border-white/20 text-white/40"><BookOpen size={18}/></div>
-            <p className="font-serif text-sm text-white/50">{t("அடுத்த கதை விரைவில்…","Next story coming soon…")}</p>
-            <p className="text-[11px] text-white/30">{t("உங்கள் கதை இங்கே இருக்கலாம்","Your story could be here")}</p>
-            <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 px-4 py-1.5 text-[11px] font-bold text-gold transition hover:bg-gold/10">
+            <p className="font-serif text-[15px] text-white/50" style={{fontFamily:'var(--font-serif-tamil)'}}>{t("அடுத்த கதை விரைவில்…","Next story coming soon…")}</p>
+            <p className="text-[12px] text-white/30" style={{fontFamily:'var(--font-sans-tamil)'}}>{t("உங்கள் கதை இங்கே இருக்கலாம்","Your story could be here")}</p>
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-gold/40 px-5 py-2 text-[12px] font-bold text-gold transition hover:bg-gold/10" style={{fontFamily:'var(--font-sans-tamil)'}}>
               {t("தொடங்குங்கள்","Begin yours")}<ArrowRight size={11}/>
             </a>
           </div>
@@ -312,7 +336,7 @@ export default function Home(){
       <div className="text-center"><SectionTitle eyebrow="CHOOSE YOUR LEGACY" title={t("உங்கள் கதைக்கான சிறந்த வடிவம்","The right form for your story")}/></div>
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {([["Starter",t("தொடக்கம்","Starter"),["Story writing","PDF delivery"],false],["Premium",t("அழகு","Premium"),["Story writing","Premium design","PDF delivery"],true],["Luxury",t("பாரம்பரியம்","Luxury"),["Story writing","Premium design","Print support","Gift-ready finish"],false]] as [string,string,string[],boolean][]).map(([key,name,items,featured])=>
-          <div key={key} className={`relative rounded-xl p-6 text-left ${featured?"bg-wine text-white shadow-xl ring-2 ring-gold/40":"bg-white border border-wine/10 shadow-sm"}`}>
+          <div key={key} className={`relative rounded-xl p-8 text-left ${featured?"bg-wine text-white shadow-xl ring-2 ring-gold/40":"bg-white border border-wine/10 shadow-sm"}`}>
             {featured&&<span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gold px-4 py-0.5 text-[10px] font-bold text-wine">MOST LOVED</span>}
             <p className="text-[10px] uppercase tracking-widest text-gold">{key}</p>
             <h3 className={`mt-2 font-serif text-xl sm:text-2xl ${featured?"text-white":"text-wine"}`}>{name}</h3>
@@ -351,14 +375,14 @@ export default function Home(){
       <div className="mt-7">
         <AnimatePresence mode="wait">
           <motion.article key={activeTesti} initial={{opacity:0,x:20}} animate={{opacity:1,x:0}} exit={{opacity:0,x:-20}} transition={{duration:.35}}
-            className="rounded-xl border border-white/8 bg-white/5 p-6 sm:p-8">
+            className="rounded-xl border border-white/8 bg-white/5 p-5 sm:p-8">
             <Quote className="text-gold" size={24}/>
-            <p className="mt-4 font-serif text-lg leading-relaxed text-white/90 sm:text-xl">
-              "{en?testimonials[activeTesti][1]:testimonials[activeTesti][0]}"
+            <p className="mt-4 font-serif text-base sm:text-lg text-white/90" style={{fontFamily:'var(--font-serif-tamil)',lineHeight:1.85}}>
+              &ldquo;{en?testimonials[activeTesti][1]:testimonials[activeTesti][0]}&rdquo;
             </p>
             <div className="mt-5 flex items-center justify-between">
               <div className="flex items-center gap-1">{[1,2,3,4,5].map(x=><Star key={x} size={12} fill="currentColor" className="text-gold"/>)}</div>
-              <span className="text-xs text-white/40">{en?["Meena & family","Arun & Kavya","Rajesh family"][activeTesti]:["மீனா & குடும்பம்","அருண் & காவ்யா","ராஜேஷ் குடும்பம்"][activeTesti]}</span>
+              <span className="text-xs text-white/40" style={{fontFamily:'var(--font-sans-tamil)'}}>{en?["Meena & family","Arun & Kavya","Rajesh family"][activeTesti]:["மீனா மற்றும் குடும்பம்","அருண் மற்றும் காவ்யா","ராஜேஷ் குடும்பம்"][activeTesti]}</span>
             </div>
           </motion.article>
         </AnimatePresence>
@@ -375,17 +399,17 @@ export default function Home(){
   {/* ══════════════ CONTACT ══════════════ */}
   <section id="contact" className="bg-cream py-14 sm:py-16">
     <div className="mx-auto grid max-w-5xl gap-8 px-4 sm:px-6 md:grid-cols-2 md:items-start md:gap-12">
-      <SectionTitle eyebrow="BEGIN YOUR BOOK" title={t("உங்கள் கதையை எங்களுக்குச் சொல்லுங்கள்","Tell us about your story")}/>
-      <form onSubmit={submit} className="grid gap-3" autoComplete="on">
-        <input required name="name" autoComplete="name" placeholder={t("உங்கள் பெயர்","Your name")} className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"/>
-        <input required name="phone" autoComplete="tel" type="tel" inputMode="numeric" placeholder={t("தொலைபேசி எண்","Phone number")} className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"/>
-        <select name="story" autoComplete="off" className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm text-stone-500 outline-none focus:border-gold">
-          <option>{t("கதை வகையைத் தேர்ந்தெடுங்கள்","Select story type")}</option>
+      <SectionTitle eyebrow="BEGIN YOUR BOOK" title={t("உங்கள் கதையை எங்களிடம் சொல்லுங்கள்","Tell us about your story")}/>
+      <form onSubmit={submit} className="grid gap-3" autoComplete="on" style={{fontFamily:'var(--font-sans-tamil)'}}>
+        <input required name="name" autoComplete="name" placeholder={t("உங்கள் பெயர்","Your name")} className="rounded-lg border border-wine/15 bg-white px-4 py-3.5 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20" style={{fontFamily:'var(--font-sans-tamil)',fontSize:'15px'}}/>
+        <input required name="phone" autoComplete="tel" type="tel" inputMode="numeric" placeholder={t("தொலைபேசி எண்","Phone number")} className="rounded-lg border border-wine/15 bg-white px-4 py-3.5 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20" style={{fontFamily:'var(--font-sans-tamil)',fontSize:'15px'}}/>
+        <select name="story" autoComplete="off" className="rounded-lg border border-wine/15 bg-white px-4 py-3.5 text-sm text-stone-500 outline-none focus:border-gold" style={{fontFamily:'var(--font-sans-tamil)',fontSize:'15px'}}>
+          <option>{t("கதை வகையைத் தேர்வு செய்யுங்கள்","Select story type")}</option>
           {services.map(x=><option key={x[0]}>{x[0]}</option>)}
         </select>
-        <textarea name="message" autoComplete="off" placeholder={t("உங்கள் கதையைப் பற்றி சில வார்த்தைகள்...","A few words about your story...")} rows={3} className="rounded-lg border border-wine/15 bg-white px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 resize-none"/>
-        <button type="submit" className="flex items-center justify-center gap-2 rounded-lg bg-wine px-5 py-3 text-sm font-bold text-white transition hover:bg-wine/90 active:scale-[.98]">
-          {t("WhatsApp-ல் அனுப்புங்கள்","Send on WhatsApp")}<MessageCircle size={16}/>
+        <textarea name="message" autoComplete="off" placeholder={t("உங்கள் கதையைப் பற்றி சில வார்த்தைகள்...","A few words about your story...")} rows={4} className="rounded-lg border border-wine/15 bg-white px-4 py-3.5 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 resize-none" style={{fontFamily:'var(--font-sans-tamil)',fontSize:'15px',lineHeight:'1.75'}}/>
+        <button type="submit" className="flex items-center justify-center gap-2 rounded-lg bg-wine px-5 py-3.5 text-sm font-bold text-white transition hover:bg-wine/90 active:scale-[.98]" style={{fontFamily:'var(--font-sans-tamil)'}}>
+          {t("WhatsApp-இல் அனுப்புங்கள்","Send on WhatsApp")}<MessageCircle size={16}/>
         </button>
       </form>
     </div>
@@ -426,9 +450,9 @@ export default function Home(){
 
         {/* col 3 — copyright */}
         <div className="flex justify-center sm:justify-end">
-          <p className="text-xs text-stone-400">
+          <p className="text-xs text-stone-400" style={{fontFamily:'var(--font-sans-tamil)'}}>
             © 2026 Jeevanyam.{" "}
-            {t("நினைவுகளை பாதுகாப்போம்.","Made for stories that matter.")}
+            {t("நினைவுகளைப் பாதுகாப்போம்.","Made for stories that matter.")}
           </p>
         </div>
 

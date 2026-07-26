@@ -2,17 +2,151 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { --wine:#641f2b; --gold:#c89b4b; --cream:#fbf6ed; --ink:#322d2c; --nav-h:80px; }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin:0; background:var(--cream); color:var(--ink); font-family: Arial, sans-serif; }
-.font-serif { font-family: Georgia, "Times New Roman", serif; }
-.texture { background-image: radial-gradient(rgba(100,31,43,.05) 1px, transparent 1px); background-size:17px 17px; }
-.gold-line { width:56px; height:2px; background:var(--gold); display:block; }
-.cover { box-shadow: 12px 18px 28px rgba(57,24,25,.2), inset 2px 0 rgba(255,255,255,.14); }
-.cover:after { content:""; position:absolute; inset:9px; border:1px solid rgba(234,205,143,.65); pointer-events:none; }
+/* ── Design tokens ── */
+:root {
+  --wine: #641f2b;
+  --gold: #c89b4b;
+  --cream: #fbf6ed;
+  --ink: #322d2c;
+  --nav-h: 80px;
 
-/* ── offset every anchor target by the fixed nav height ── */
+  /* Tamil-optimised font stacks */
+  --font-sans-tamil: "Noto Sans Tamil", "Noto Sans", system-ui, sans-serif;
+  --font-serif-tamil: "Noto Serif Tamil", "Noto Serif", Georgia, serif;
+  --font-serif-latin: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevent font-size inflation on iOS */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  /* Noto Sans Tamil renders beautifully on all devices */
+  font-family: var(--font-sans-tamil);
+  /* Tamil script needs slightly more line-height */
+  line-height: 1.75;
+  font-size: 16px;
+  /* Smooth font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1;
+}
+
+/* ── Serif override (headings, blockquotes, testimonials) ── */
+.font-serif {
+  font-family: var(--font-serif-latin);
+  /* When rendering Tamil in serif context, fall back to Noto Serif Tamil */
+}
+
+/* Tamil-specific serif for headings that contain Tamil text */
+:lang(ta) .font-serif,
+.tamil-serif {
+  font-family: var(--font-serif-tamil);
+}
+
+/* ── Mobile typography improvements ── */
+/* Tamil glyphs are complex — ensure minimum readable sizes on mobile */
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  /* Section titles in Tamil need breathing room */
+  h1, h2, h3 {
+    line-height: 1.4;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* Prevent text overflow on small screens */
+  p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* ── Touch target improvement ── */
+button, a {
+  min-height: 44px;
+  /* iOS minimum touch target */
+}
+
+/* Except decorative / inline elements */
+button.dot-btn, a.inline-text {
+  min-height: unset;
+}
+
+/* ── Texture and decorative utilities ── */
+.texture {
+  background-image: radial-gradient(rgba(100, 31, 43, .05) 1px, transparent 1px);
+  background-size: 17px 17px;
+}
+
+.gold-line {
+  width: 56px;
+  height: 2px;
+  background: var(--gold);
+  display: block;
+}
+
+.cover {
+  box-shadow: 12px 18px 28px rgba(57, 24, 25, .2), inset 2px 0 rgba(255, 255, 255, .14);
+}
+
+.cover::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(234, 205, 143, .65);
+  pointer-events: none;
+}
+
+/* ── Anchor scroll offset for fixed nav ── */
 section[id], footer[id] {
   scroll-margin-top: var(--nav-h);
+}
+
+/* ── Tamil text enhancements ── */
+/* Proper letter-spacing for Tamil — do NOT use tight tracking like Latin */
+[lang="ta"], .tamil-text {
+  letter-spacing: 0;
+  word-spacing: 0.05em;
+}
+
+/* Noto Sans Tamil renders better with slightly increased word-spacing */
+.text-tamil-body {
+  font-family: var(--font-sans-tamil);
+  line-height: 1.85;
+  letter-spacing: 0;
+}
+
+.text-tamil-heading {
+  font-family: var(--font-serif-tamil);
+  line-height: 1.35;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+/* ── Mobile scroll improvements ── */
+@media (max-width: 768px) {
+  /* Smoother horizontal scroll for image strips */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
 }
