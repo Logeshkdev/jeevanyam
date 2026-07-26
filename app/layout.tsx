@@ -1,32 +1,62 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Inter, Playfair_Display, Noto_Sans_Tamil, Noto_Serif_Tamil } from "next/font/google";
+import { LanguageProvider } from "@/context/LanguageContext";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "ஜீவனயம் | தனிப்பயன் கதை புத்தகங்கள்",
-  description: "உங்கள் நினைவுகளை அழகான தமிழ் கதை புத்தகமாக மாற்றுங்கள். Turn your memories into a beautifully written Tamil story book.",
-  keywords: ["Tamil Story Book", "Personalized Book Tamil", "Life Story Book", "Family Memory Book", "Love Story Book Tamil", "Parents Memoir Book", "House Journey Book", "Jeevanyam", "ஜீவனயம்"],
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans-latin" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif-latin" });
+const notoSansTamil = Noto_Sans_Tamil({ subsets: ["tamil"], variable: "--font-sans-tamil", weight: ["400", "500", "600", "700"] });
+const notoSerifTamil = Noto_Serif_Tamil({ subsets: ["tamil"], variable: "--font-serif-tamil", weight: ["400", "500", "600", "700"] });
+
+export const viewport: Viewport = {
+  themeColor: "#641f2b",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export const metadata: Metadata = {
+  metadataBase: new URL("https://jeevanyam.in"),
+  title: "ஜீவனயம் | Jeevanyam",
+  description: "உங்கள் வாழ்க்கை ஒரு அழகான புத்தகமாக | Turn your life into a beautiful book",
+  openGraph: {
+
+    title: "ஜீவனயம் | Jeevanyam",
+    description: "உங்கள் வாழ்க்கை ஒரு அழகான புத்தகமாக",
+    url: "https://jeevanyam.in",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Jeevanyam",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ஜீவனயம் | Jeevanyam",
+    description: "உங்கள் வாழ்க்கை ஒரு அழகான புத்தகமாக | Turn your life into a beautiful book",
+    images: ["/images/og-image.png"],
+  },
+  appleWebApp: {
+    title: "Jeevanyam",
+    statusBarStyle: "default",
+    capable: true,
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="ta">
-      <head>
-        {/* Viewport for mobile optimization */}
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"/>
-
-        {/* Google Fonts — Noto Serif Tamil (headings) + Noto Sans Tamil (body) */}
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap"
-          rel="stylesheet"
-        />
-
-        {/* Preload only the above-the-fold critical images */}
-        <link rel="preload" as="image" href="/images/jeevanyam-logo-dark.png"/>
-        <link rel="preload" as="image" href="/images/hero-memory-1.jpg"/>
-      </head>
-      <body>{children}</body>
+    <html lang="ta" className="scroll-smooth" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${playfair.variable} ${notoSansTamil.variable} ${notoSerifTamil.variable} font-sans antialiased bg-cream`}
+      >
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
+      </body>
     </html>
   );
 }
